@@ -46,6 +46,7 @@
 #define BOARD_GAMEDUINO23 1
 #define BOARD_SUNFLOWER   2
 #define BOARD_OTHER       3
+#define BOARD_NHD_7       4
 
 #ifndef BOARD
 #define BOARD         BOARD_GAMEDUINO23 // board, from above
@@ -68,7 +69,7 @@
 #elif (BOARD == BOARD_SUNFLOWER)
 #define DEFAULT_CS 6
 #else
-#define DEFAULT_CS 8
+#define DEFAULT_CS 10
 #endif
 #endif
 
