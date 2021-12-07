@@ -48,6 +48,8 @@
 #define BOARD_OTHER       3
 #define BOARD_NHD_7       4
 
+#define BOARD         BOARD_NHD_7
+
 #ifndef BOARD
 #define BOARD         BOARD_GAMEDUINO23 // board, from above
 #endif

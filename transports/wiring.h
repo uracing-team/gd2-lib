@@ -44,7 +44,7 @@ public:
 
     SPI.begin();
 #if defined(TEENSYDUINO) || defined(ARDUINO_ARCH_STM32L4) || defined(ARDUINO_ARCH_STM32)
-    SPI.beginTransaction(SPISettings(16000000, MSBFIRST, SPI_MODE0));
+    SPI.beginTransaction(SPISettings(1600000, MSBFIRST, SPI_MODE0));
 #else
 #if !defined(__DUE__) && !defined(ESP8266) && !defined(ESP32) && !defined(ARDUINO_ARCH_STM32)
     SPI.setClockDivider(SPI_CLOCK_DIV2);
