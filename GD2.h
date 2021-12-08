@@ -16,6 +16,12 @@
 #include "Arduino.h"
 #include <stdarg.h>
 
+#define USE_SDFAT
+
+#ifdef USE_SDFAT
+#include "SdFat.h"
+#endif
+
 #define RGB(r, g, b)    ((uint32_t)((((r) & 0xffL) << 16) | (((g) & 0xffL) << 8) | ((b) & 0xffL)))
 #define F8(x)           (int((x) * 256L))
 #define F16(x)          ((int32_t)((x) * 65536L))
@@ -84,7 +90,7 @@
 // Arduino Due: no
 //
 
-#if !defined(RASPBERRY_PI) && !defined(DUMPDEV)
+#if !defined(RASPBERRY_PI) && !defined(DUMPDEV) && !defined(USE_SDFAT)
 #define SDCARD 1
 #else
 #define SDCARD 0
@@ -145,8 +151,6 @@ static class ASPI_t ASPI;
 //   Source: https://github.com/millerresearch/arduino-mystorm
 #endif
 
-#if SDCARD
-
 #if defined(VERBOSE) && (VERBOSE > 0)
 #define INFO(X) Serial.println((X))
 #if defined(RASPBERRY_PI)
@@ -159,6 +163,7 @@ static class ASPI_t ASPI;
 #define REPORT(X)
 #endif
 
+#if SDCARD
 struct dirent {
   char name[8];
   char ext[3];
@@ -1398,6 +1403,7 @@ public:
   }
 };
 
+#if SDCARD
 class MoviePlayer
 {
   uint32_t mf_size, mf_base, wp;
@@ -1491,6 +1497,7 @@ public:
     return de.name[0];
   }
 };
+#endif /* SDCARD */
 
 /*
  * PROGMEM declarations are currently not supported by the ESP8266
